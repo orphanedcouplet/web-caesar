@@ -3,30 +3,32 @@
 <html>
     <head>
         <style>
-            form {
+            form {{
                 background-color: #eee;
                 padding: 20px;
                 margin: 0 auto;
                 width: 540px;
                 font: 16px sans-serif;
                 border-radius: 10px;
-            }
-            textarea {
+            }}
+            textarea {{
                 margin: 10px 0;
                 width: 540px;
                 height: 120px;
-            }
+            }}
         </style>
     </head>
     <body>
         <!-- create your form here -->
-        <form action-"/encrypt" method="post">
+        <form method="post">
             <label for="rot">
                 Rotate by:
-                <input type="text" name="rot" />
+                <input type="text" name="rot" value="0" />
             </label>
-            <textarea name="text" rows="10" cols="30"></textarea>
+            <label>
+                    <textarea name="text" rows="10" cols="30">{0}</textarea>
+            </label>
             <input type="submit" value="Submit Query" />
         </form>
-    </body>
+    </body>    
 </html>

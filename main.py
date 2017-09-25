@@ -10,61 +10,47 @@ form = """
 <html>
     <head>
         <style>
-            form {
+            form {{
                 background-color: #eee;
                 padding: 20px;
                 margin: 0 auto;
                 width: 540px;
                 font: 16px sans-serif;
                 border-radius: 10px;
-            }
-            textarea {
+            }}
+            textarea {{
                 margin: 10px 0;
                 width: 540px;
                 height: 120px;
-            }
+            }}
         </style>
     </head>
     <body>
         <!-- create your form here -->
-        <form action-"/encrypt" method="post">
+        <form method="post">
             <label for="rot">
                 Rotate by:
-                <input type="text" name="rot" />
+                <input type="text" name="rot" value="0" />
             </label>
-            <textarea name="text" rows="10" cols="30"></textarea>
+            <label>
+                    <textarea name="text" rows="10" cols="30">{0}</textarea>
+            </label>
             <input type="submit" value="Submit Query" />
         </form>
-    </body>
-</html>
-"""
-
-page_header = """
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Web Caesar</title>
-    </head>
-    <body>
-"""
-
-page_footer = """
-</body>
+    </body>    
 </html>
 """
 
 @app.route("/")
 def index():
-    return form
+    return form.format("")
 
 @app.route("/", methods=['POST'])
-def encrypt(rota, orig_text):
+def encrypt():
     rota = int(request.form['rot'])
     orig_text = str(request.form['text'])
     rotated_text = rotate_string(orig_text, rota)
-    rotated_text_element = "<h1>" + rotated_text + "</h1>"
-    content = page_header + rotated_text_element + page_footer
-    return content
+    return form.format(rotated_text)
 
 
 app.run()
